@@ -1,0 +1,13 @@
+/*--Header--*/
+.header{
+    width: 100%;
+    height: 7vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #C3CFD9;
+    color: #E8833A;
+    font-size:34px;
+    font-family: 'Roboto', sans-serif;
+}
+/*--Header--*/
