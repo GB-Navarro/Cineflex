@@ -1,3 +1,6 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
 /*--Header--*/
 .header{
     width: 100%;
@@ -8,6 +11,157 @@
     background-color: #C3CFD9;
     color: #E8833A;
     font-size:34px;
-    font-family: 'Roboto', sans-serif;
 }
 /*--Header--*/
+/*--Filmes--*/
+main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    font-size:24px;
+}
+.componentTittle{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 15vh;
+}
+.filmes{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.filmeImg{
+    width: 129px;
+    height: 193px;
+}
+.filmeImg img{
+    max-width: 100%;
+    max-height: 100%;
+}
+/*--Filmes--*/
+/*--Horários--*/
+.scheduleInfo{
+    margin-left: 5vw;
+}
+.scheduleBox{
+    width: 82px;
+    height: 43px;
+    background-color: #E8833A;
+}
+/*--Horários--*/
+/*--Assentos--*/
+.assentos{
+    display:flex;
+    flex-wrap:wrap;
+    margin: 0px 23px 0px 30px;
+}
+.assento{
+    width: 26px;
+    height: 26px;
+    background-color: #C3CFD9;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    margin-bottom:18px;
+    margin-left:8px;
+}
+.description{
+    display:flex;
+    justify-content: space-evenly;
+}
+.description p {
+    font-size:13px;
+    margin-bottom:50px;
+}
+.selected{
+    width: 26px;
+    height: 26px;
+    background-color: #C3CFD9;
+    border-radius: 12px;
+}
+.available{
+    width: 26px;
+    height: 26px;
+    background-color: #8DD7CF;
+    border-radius: 12px;
+}
+.unavailable{
+    width: 26px;
+    height: 26px;
+    background-color: #FBE192;
+    border-radius: 12px;
+}
+/*--Assentos--*/
+/*--Tela Final--*/
+.confirmationMessage{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 15vh;
+    color:#247A6B;
+    font-weight: bold;
+    font-size: 20px;
+}
+.confirmationInfos{
+    margin-left:29px;
+}
+.confirmationInfos h1{
+    font-size:20px;
+    font-weight: bold;
+}
+.movieAndSection{
+    margin-bottom:30px;
+}
+.movieAndSection h1{
+    margin-bottom:10px;
+}
+.tickets{
+    margin-bottom:30px;
+}
+.tickets h1{
+    margin-bottom:10px;
+}
+.buyer{
+    margin-bottom:45px;
+}
+.buyer h1{
+    margin-bottom:10px;
+}
+.backToHome{
+    width: 75vw;
+    height: 5vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E8833A;
+    color: #FFFFFF;
+}
+.box{
+    display:flex;
+    justify-content: center;
+}
+/*--Tela Final--*/
+/*--Footer--*/
+.footer{
+    width: 100vw;
+    height: 10vh;
+    background-color: #DFE6ED;
+    display:flex; /* NÃO FUNCIONOU */
+}
+.footer img{
+    width: 48px;
+    height: 72px;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left:10px; /* NÃO FUNCIONOU */
+}
+.footer p{
+    margin-left:14px; /* NÃO FUNCIONOU */
+}
+/*--Footer--*/
