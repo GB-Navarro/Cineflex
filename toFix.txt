@@ -1,0 +1,13 @@
+<App /> => OK!
+<Assentos /> => {
+	Linha 26 ~ 42 => Problema com a centralização do texto em relação as "bolinhas"
+	Linha 43 ~ 52 => Ao escrever usar a tag input (pro usuário digitar os dados) a tela fica em branco, como se o componente não existisse
+}
+<Filmes /> => OK!
+<Footer /> => OK!
+<Header /> => OK!
+<Horarios /> =>{
+	Nessa página o link ficou com formatação, como eu consigo remover a formatação desse link sem alterar os estilos CSS que coloquei anteriormente ?
+}
+<TelaFinal /> => OK!
+index.js => OK!
