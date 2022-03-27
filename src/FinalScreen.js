@@ -1,4 +1,4 @@
-export default function TelaFinal(){
+export default function FinalScreen(){
     return(
         <>
             <section className="finalScreen">

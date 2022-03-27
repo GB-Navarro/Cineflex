@@ -1,27 +1,31 @@
-export default function Assentos(){
+import FooterSeats from "./FooterSeats";
+import { useParams } from "react-router-dom";
+export default function Seats(){
+    const parametros = useParams();
+    console.log(parametros);
     return (
         <>
             <section>
                 <h1 className="componentTittle"> Selecione o(s) assento(s) </h1>
-                <div className="assentos">
-                    <Assento />
-                    <Assento />
-                    <Assento />
-                    <Assento />
-                    <Assento />
-                    <Assento />
-                    <Assento />
-                    <Assento />
-                    <Assento />
-                    <Assento />
-                    <Assento />
-                    <Assento />
-                    <Assento />
-                    <Assento />
-                    <Assento />
-                    <Assento />
-                    <Assento />
-                    <Assento />
+                <div className="seats">
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
                 </div>
                 <div className="description">
                     <div>
@@ -54,13 +58,14 @@ export default function Assentos(){
                     
                 </div>
             </section>
+            <FooterSeats />
         </>
     )
 }
-function Assento(){
+function Seat(){
     return (
         <>
-            <div className="assento">
+            <div className="seat">
                 <p>01</p>
             </div>
         </>
