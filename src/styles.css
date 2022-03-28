@@ -1,5 +1,6 @@
 body{
     font-family: 'Roboto', sans-serif;
+    background-color:#E5E5E5;
 }
 /*--Header--*/
 .header{
@@ -13,7 +14,7 @@ body{
     font-size:34px;
 }
 /*--Header--*/
-/*--Filmes--*/
+/*--Movies--*/
 main{
     width: 100%;
     display: flex;
@@ -28,6 +29,8 @@ main{
     align-items: center;
     width: 100%;
     height: 15vh;
+    font-size:24px;
+    color:#293845;
 }
 .movies{
     display:flex;
@@ -38,22 +41,83 @@ main{
     width: 129px;
     height: 193px;
     margin-bottom:27px;
+    background-color: #FFFFFF;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
 }
 .movieImg img{
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 90%;
+    max-height: 90%;
 }
-/*--Filmes--*/
-/*--Horários--*/
+/*--Movies--*/
+/*--Schedules--*/
 .scheduleInfo{
     margin-left: 5vw;
+    margin-bottom:25px;
+}
+.scheduleInfo p{
+    color:#293845;
+    font-size:18px;
+}
+.schedulesContainer{
+    display:flex;
 }
 .scheduleBox{
-    width: 82px;
+    width: 83px;
     height: 43px;
     background-color: #E8833A;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    margin-top:25px;
+    margin-right:10px;
 }
-/*--Horários--*/
+.scheduleBox p{
+    font-size:18px;
+    color: #FFFFFF;
+}
+.footerSchedules{
+    width: 100vw;
+    height: 15vh;
+    background-color: #DFE6ED;
+    display:flex;
+    position: fixed;
+    bottom:0;
+}
+.footerSchedulesContainer{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.footerSchedulesImg{
+    width: 64px;
+    height: 89px;
+    max-width: 90%;
+    max-height: 90%;
+    background-color: #FFFFFF;
+    display:flex;
+    align-items: center;
+    margin-left:10px;
+    border-radius:3px;
+}
+.footerSchedulesImg img{
+    width: 48px;
+    height: 72px;
+    margin:auto;
+}  
+.footerSchedules p{
+    margin-left:14px;
+}
+.footerSchedulesBox{
+    display:flex;
+    align-items: center;
+    color:#293845;
+    font-size: 20px;
+}
+/*--Schedules--*/
 /*--Seats--*/
 .seats{
     display:flex;
@@ -97,8 +161,77 @@ main{
     background-color: #FBE192;
     border-radius: 12px;
 }
+.seatsInput{
+    width:327px;
+    height: 25px;
+    margin-bottom:14px;
+}
+.inputsBox{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.seatsBox{
+    width: 100%;
+    display:flex;
+    justify-content: center;
+}
+.seatsButton{
+    width:225px;
+    height: 42px;
+    background-color: #E8833A;
+    font-size:18px;
+    color:#FFFFFF;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:50px;
+}
+.footerSeats{
+    width: 100vw;
+    height: 15vh;
+    background-color: #DFE6ED;
+    display:flex;
+    position:fixed;
+    bottom:0;
+    
+}
+.footerSeatsContainer{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.footerSeatsImg{
+    width: 64px;
+    height: 89px;
+    max-width: 90%;
+    max-height: 90%;
+    background-color: #FFFFFF;
+    display:flex;
+    align-items: center;
+    margin-left:10px;
+    border-radius:3px;
+}
+.footerSeatsImg img{
+    width: 48px;
+    height: 72px;
+    margin:auto;
+}
+.footerSeats p{
+    margin-left:14px;
+}
+.footerSeatsBox{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    color:#293845;
+}
+.footerSeatsBox .textTop{
+    margin-bottom:5px;
+}
 /*--Seats--*/
-/*--Tela Final--*/
+/*--FinalScreen--*/
 .confirmationMessage{
     display:flex;
     justify-content: center;
@@ -116,23 +249,17 @@ main{
     font-size:20px;
     font-weight: bold;
 }
-.movieAndSection{
+.infos{
     margin-bottom:30px;
 }
-.movieAndSection h1{
+.infos h1{
     margin-bottom:10px;
+    color:#293845;
 }
-.tickets{
-    margin-bottom:30px;
-}
-.tickets h1{
-    margin-bottom:10px;
-}
-.buyer{
-    margin-bottom:45px;
-}
-.buyer h1{
-    margin-bottom:10px;
+.infos p{
+    margin-bottom:5px;
+    color:#293845;
+    font-size:22px;
 }
 .backToHome{
     width: 75vw;
@@ -142,75 +269,11 @@ main{
     align-items: center;
     background-color: #E8833A;
     color: #FFFFFF;
+    margin-top:75px;
 }
 .box{
     display:flex;
     justify-content: center;
 }
-/*--Tela Final--*/
-/*--FooterSchedules--*/
-.footerSchedules{
-    width: 100vw;
-    height: 10vh;
-    background-color: #DFE6ED;
-    display:flex; /* NÃO FUNCIONOU */
-}
-.footerSchedules img{
-    width: 48px;
-    height: 72px;
-    max-width: 100%;
-    max-height: 100%;
-    margin-left:10px; /* NÃO FUNCIONOU */
-}
-.footerSchedules p{
-    margin-left:14px; /* NÃO FUNCIONOU */
-}
-.footerSchedulesBox{
-    display:flex;
-    align-items: center;
-    color:#293845;
-    font-size: 20px;
-}
-/*--FooterSchedules--*/
-/*--FooterSeats--*/
-.footerSeats{
-    width: 100vw;
-    height: 10vh;
-    background-color: #DFE6ED;
-    display:flex; /* NÃO FUNCIONOU */
-}
-.footerSeats img{
-    width: 48px;
-    height: 72px;
-    max-width: 100%;
-    max-height: 100%;
-    margin-left:10px; /* NÃO FUNCIONOU */
-}
-.footerSeats p{
-    margin-left:14px; /* NÃO FUNCIONOU */
-}
-.footerSeatsBox{
-    display:flex;
-    align-items: center;
-    color:#293845;
-}
-/*--FooterSeats--*/
-/*--Testes--*/
-.testes{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    margin:auto;
-    width: 20vw;
-    height: 40vh;
-}
-.testes img{
-    max-width: 100%;
-    max-height: 100%;
-}
-.testes p{
-    display:flex;
-    justify-content: center;
-    margin-top:20px;
-}
-/*--Testes--*/
+/*--FinalScreen--*/
+

@@ -1,4 +1,3 @@
-import FooterSeats from "./FooterSeats";
 import { useParams } from "react-router-dom";
 export default function Seats(){
     const parametros = useParams();
@@ -30,7 +29,7 @@ export default function Seats(){
                 <div className="description">
                     <div>
                         <div className="selected"></div>
-                        <p>Selecionado</p>
+                            <p>Selecionado</p>
                         {/*Preciso centralizar em relação a bolinha*/}
                     </div>
                     <div>
@@ -46,19 +45,35 @@ export default function Seats(){
                 </div>
                 <div className="buyer">
                     <div className="buyerName">
-                        <p>Nome do comprador:</p>
-                        {/*Quando eu coloco input a tela some */}
+                        <div className="inputsBox">
+                            <p>Nome do comprador:</p>
+                            <input className="seatsInput" placeholder="Digite seu nome..."></input>
+                        </div>
                     </div>
                     <div className="buyerCPF">
-                        <p>CPF do comprador:</p>
-                        {/*Quando eu coloco input a tela some */}
+                        <div className="inputsBox">
+                            <p>CPF do comprador:</p>
+                            <input className="seatsInput" placeholder="Digite seu CPF..."></input>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    
+                <div className="seatsBox">
+                    <div className="seatsButton">
+                        <p> Reservar assento(s) </p>
+                    </div>
                 </div>
             </section>
-            <FooterSeats />
+            <footer className="footerSeats">
+                <div className="footerSeatsContainer">
+                    <div className="footerSeatsImg">
+                        <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg" alt="Capa do filme"/>
+                    </div>
+                </div>
+                <div className="footerSeatsBox">
+                    <p className="textTop">Liga da Justiça</p>
+                    <p>Quinta-feira - 15:00</p>
+                </div>
+            </footer>
         </>
     )
 }

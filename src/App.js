@@ -4,7 +4,7 @@ import Movies from "./Movies";
 import Schedules from "./Schedules";
 import Seats from "./Seats";
 import FinalScreen from "./FinalScreen";
-//import Testes from "./Testes";
+
 import "./reset.css"
 import "./styles.css";
 
@@ -17,7 +17,6 @@ export default function App(){
                 <Route path="/schedules/:scheduleId" element={<Schedules />}></Route> {/* OK */}
                 <Route path="/seats/:seatId" element={<Seats />}></Route> {/* OK */}
                 <Route path="/finalscreen/:finalscreenId" element={<FinalScreen />}></Route> {/* OK */}
-                {/*<Route path="/testes" element={<Testes />}></Route>*/}
             </Routes>
         </BrowserRouter>      
     )
