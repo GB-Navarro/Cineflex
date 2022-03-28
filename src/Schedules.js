@@ -8,30 +8,32 @@ export default function Schedules(){
     
     const {scheduleId} = useParams();
     const [elementos, setElementos] = useState([])
+    let showTimes = [];
 
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${scheduleId}/showtimes`);
         promisse.then((response) => {
             const {data} = response;
             setElementos(data.days);
-            console.log("Aqui são os dados dos elementos", elementos);
-            console.log("Aqui são os dados da data", data);
-            
         })
     },[])
 
+    //console.log(elementos.showtimes);
     return(
         <>
             <section className="schedulesSection">
                 <h1 className="componentTittle"> Selecione o horário </h1>
                 <Schedule/>
                 <Schedule />
-                {elementos.length > 0 &&
+                {elementos.length > 0 ? 
                     elementos.map((elemento) => {
-                        <Link to="/seats">
-                            <Schedule weekday={elemento.weekday} date={elemento.date} showtime1={elemento.showtimes[0].name} showtime2={elemento.showtimes[1].name}/>
-                        </Link>
+                        return(
+                            <Link to="/seats">
+                                <Schedule weekday={elemento.weekday} date={elemento.date} showtimes={elemento.showtimes}/>
+                            </Link>
+                        );
                     })
+                : <></>
                 }
                     
             </section>
@@ -52,30 +54,16 @@ export default function Schedules(){
 function Schedule(props){
     return (
         <>
-        <div>
-            <div className="scheduleInfo">
-                <p>{props.weekday} - {props.date}</p>
-                <span className="scheduleBox">{props.showtime1}</span>
-                <span className="scheduleBox">{props.showtime2}</span>
-            </div>
-        </div>
-        {/*<div>
-            <div className="scheduleInfo">
-                <p>Quarta-feira - 25/08/2020</p>
-                <div className="schedulesContainer">
-                    <div className="scheduleBox">
-                        <Link to="/seats">
-                            <p>15:00</p>
-                        </Link>
-                    </div>
-                    <div className="scheduleBox">
-                        <Link to="/seats">
-                            <p>16:00</p>
-                        </Link>
-                    </div>
+            <div>
+                <div className="scheduleInfo">
+                    <p>{props.weekday} - {props.date}</p>
+                    {/*{
+                        props.showtimes.map((showtime) => {
+                            return <span className="scheduleBox">{showtime}</span>
+                        })
+                    }*/}
                 </div>
-    </div>
-        </div>*/}
+            </div>
         </>
     );
 }
