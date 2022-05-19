@@ -1,12 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Header from "./Header";
 import Movies from "./Movies";
 import Schedules from "./Schedules";
 import Seats from "./Seats";
 import FinalScreen from "./FinalScreen";
 
-import "./reset.css"
-import "./styles.css";
+import "../reset.css"
+import "../styles.css";
 
 export default function App(){
     return (
