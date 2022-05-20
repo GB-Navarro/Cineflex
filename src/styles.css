@@ -1,8 +1,12 @@
+*{
+    text-decoration: none;
+}
 body{
     font-family: 'Roboto', sans-serif;
     background-color:#E5E5E5;
 }
 /*--Schedules--*/
+
 
 .scheduleBox{
     width: 83px;

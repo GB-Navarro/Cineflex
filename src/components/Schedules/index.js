@@ -9,7 +9,6 @@ export default function Schedules(){
     
     const {scheduleId} = useParams();
     const [elementos, setElementos] = useState([])
-    let showTimes = [];
 
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${scheduleId}/showtimes`);
@@ -22,9 +21,9 @@ export default function Schedules(){
     return(
         <>
             <section>
-                <h1> Selecione o horário </h1>
-                <Schedule/>
-                <Schedule/>
+                <TittleBox>
+                    <h1> Selecione o horário </h1>  
+                </TittleBox>
                 {elementos.length > 0 ? 
                     elementos.map((elemento) => {
                         return(
@@ -55,19 +54,38 @@ function Schedule(props){
     return (
         <>
             <div>
-                <Info>
+                <ScheduleInfo>
                     <p>{props.weekday} - {props.date}</p>
-                    {/*{
-                        props.showtimes.map((showtime) => {
-                            return <span className="scheduleBox">{showtime}</span>
-                        })
-                    }*/}
-                </Info>
+                    <SchedulesContainer>
+                        {   
+                            props.showtimes.length > 0 ?
+                                props.showtimes.map((showtime) => {
+                                    return (
+                                        <>
+                                            <span className="scheduleBox">{showtime.name}</span>
+                                        </>
+                                    )
+                                })
+                            :
+                                <></>
+                        }
+                    </SchedulesContainer>
+                </ScheduleInfo>
             </div>
         </>
     );
 }
 
+const TittleBox = styled.div`
+    display:flex;
+    justify-content: center;
+    margin: 50px 0px 50px 0px;
+
+    h1{
+        color: #293845;
+        font-size: 24px;
+    }
+`
 const Footer = styled.footer`
     width: 100vw;
     height: 15vh;
@@ -110,7 +128,7 @@ const TextContainer = styled.div`
     }
 `
 
-const Info = styled.div`
+const ScheduleInfo = styled.div`
     margin-left: 5vw;
     margin-bottom:25px;
 
@@ -118,4 +136,7 @@ const Info = styled.div`
         color:#293845;
         font-size:18px;
     }
+`
+const SchedulesContainer = styled.div`
+    display:flex;
 `

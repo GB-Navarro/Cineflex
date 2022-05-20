@@ -52,7 +52,12 @@ const Main = styled.main`
     flex-direction: column;
     justify-content: center; 
     align-items: center;
-    font-size:24px;
+
+    h1{
+        margin: 50px 0px 50px 0px;
+        color: #293845;
+        font-size: 24px;
+    }
 `
 
 const MoviesContainer = styled.div`
