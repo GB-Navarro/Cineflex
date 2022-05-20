@@ -5,13 +5,11 @@ import styled from "styled-components";
 
 export default function Movies(){
     const promisse = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies");
-    let movies = []
     const [elements,setElements] = useState([]);
 
     useEffect(() => {
         promisse.then((response) => {
-            movies = response.data;
-            setElements(movies);
+            setElements(response.data);
         })
         promisse.catch(() => {
             console.log("Erro na requisição")
@@ -26,7 +24,7 @@ export default function Movies(){
                     {elements.map(element => {
                         return (
                             <Link to={`schedules/${element.id}`}>
-                                <Movie imgSrc={element.posterURL} imgAlt={element.title}/>
+                                <Movie key={element.id} imgSrc={element.posterURL} imgAlt={element.title}/>
                             </Link>
                             
                         )

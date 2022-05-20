@@ -1,34 +1,42 @@
 import { useParams } from "react-router-dom";
+import {useEffect, useState} from "react";
 import styled from "styled-components";
+import axios from "axios";
 export default function Seats() {
-    const parametros = useParams();
-    console.log(parametros);
+
+    const SessionID = useParams();
+    const [elements, setElements] = useState([]);
+    const [selected, setSelected] = useState(false);
+
+    useEffect(() => {
+        const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${SessionID.seatId}/seats`);
+        promisse.then((response) => {
+            setElements(response.data.seats);
+        })
+        promisse.catch((err) => {
+            console.log("Xabu");
+        })
+    },[])
     return (
         <>
             <section>
                 <Tittle className="componentTittle"> Selecione o(s) assento(s) </Tittle>
-                <Chairs>
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                    <Chair />
-                </Chairs>
+                {elements.length > 0 ? 
+                    <Chairs>
+                        {
+                            elements.map((element) => {
+                                return(
+                                    <>
+                                        <Chair key={element.id} id={element.id} name={element.name} 
+                                        isAvailable={element.isAvailable} selected={selected} setSelected={setSelected}/>
+                                    </>
+                                )
+                            })
+                        }
+                    </Chairs>
+                :
+                    <></>
+                    }
                 <Description>
                     <div>
                         <Selected></Selected>
@@ -80,11 +88,13 @@ export default function Seats() {
         </>
     )
 }
-function Chair() {
+function Chair(props) {
     return (
         <>
-            <Seat>
-                <p>01</p>
+            <Seat available={props.isAvailable} onClick={() => {
+
+            }}>
+                <p>{props.name}</p>
             </Seat>
         </>
     )
@@ -137,7 +147,7 @@ const Unavailable = styled.div`
 const Seat = styled.div`
     width: 26px;
     height: 26px;
-    background-color: #C3CFD9;
+    background-color: ${props => props.available ? "#8DD7CF" : "#FBE192"};
     display:flex;
     justify-content: center;
     align-items: center;

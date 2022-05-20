@@ -27,9 +27,9 @@ export default function Schedules(){
                 {elementos.length > 0 ? 
                     elementos.map((elemento) => {
                         return(
-                            <Link to="/seats">
-                                <Schedule weekday={elemento.weekday} date={elemento.date} showtimes={elemento.showtimes}/>
-                            </Link>
+                            <>
+                                <Schedule key={elemento.id} weekday={elemento.weekday} date={elemento.date} showtimes={elemento.showtimes}/>
+                            </>
                         );
                     })
                 : <></>
@@ -62,7 +62,9 @@ function Schedule(props){
                                 props.showtimes.map((showtime) => {
                                     return (
                                         <>
-                                            <span className="scheduleBox">{showtime.name}</span>
+                                            <Link to={`/seats/${showtime.id}`}>
+                                                <span className="scheduleBox">{showtime.name}</span>
+                                            </Link>  
                                         </>
                                     )
                                 })
