@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export default function FinalScreen(props){
     return(
@@ -34,7 +35,9 @@ export default function FinalScreen(props){
                 </ConfirmationInfos>
                 <ButtonContainer>
                     <ButtonBox>
-                        <p> Voltar pra Home </p> {/* Transformar o p em button */}
+                        <Link to="/">
+                            <p> Voltar pra Home </p> {/* Transformar o p em button */}
+                        </Link>
                     </ButtonBox>
                 </ButtonContainer>
             </section>
