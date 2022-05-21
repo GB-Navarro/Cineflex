@@ -36,7 +36,7 @@ export default function FinalScreen(props){
                 <ButtonContainer>
                     <ButtonBox>
                         <Link to="/">
-                            <p> Voltar pra Home </p> {/* Transformar o p em button */}
+                            <Button> Voltar pra Home </Button>
                         </Link>
                     </ButtonBox>
                 </ButtonContainer>
@@ -95,4 +95,12 @@ const ButtonBox = styled.div`
     background-color: #E8833A;
     color: #FFFFFF;
     margin-top:75px;
+`
+const Button = styled.button`
+    width:100%;
+    height:100%;
+    background-color: #E8833A;
+    font-size:18px;
+    color:#FFFFFF;
+    border: 1px solid #E8833A;
 `

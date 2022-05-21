@@ -45,8 +45,9 @@ export default function Seats(props) {
                                     <>
                                         <Chair key={element.id} id={element.id} name={element.name}
                                             isAvailable={element.isAvailable}
-                                            data={data} selectedSeats={selectedSeats} setSelectedSeats={setSelectedSeats}
-                                            selectedSeatsId={selectedSeatsId} setSelectedSeatsId={setSelectedSeatsId} />
+                                            data={data} selectedSeats={selectedSeats}
+                                            setSelectedSeats={setSelectedSeats} selectedSeatsId={selectedSeatsId}
+                                            setSelectedSeatsId={setSelectedSeatsId} />
                                     </>
                                 )
                             })
@@ -57,19 +58,22 @@ export default function Seats(props) {
                 }
                 <Description>
                     <div>
-                        <Selected></Selected>
+                        <IconContainer>
+                            <Selected></Selected>
+                        </IconContainer>
                         <p>Selecionado</p>
-                        {/*Preciso centralizar em relação a bolinha*/}
                     </div>
                     <div>
-                        <Available></Available>
+                        <IconContainer>
+                            <Available></Available>
+                        </IconContainer>
                         <p>Disponível</p>
-                        {/*Preciso centralizar em relação a bolinha*/}
                     </div>
                     <div>
-                        <Unavailable></Unavailable>
+                        <IconContainer>
+                            <Unavailable></Unavailable>
+                        </IconContainer>
                         <p>Indisponível</p>
-                        {/*Preciso centralizar em relação a bolinha*/}
                     </div>
                 </Description>
                 <div className="buyer">
@@ -112,7 +116,7 @@ export default function Seats(props) {
                                 console.log(error);
                             })
                         }}>
-                            <p> Reservar assento(s) </p> {/*Transformar o p em um button*/}
+                            <Button> Reservar assento(s) </Button>
                         </ButtonBox>
                     </Link>
                 </ButtonContainer>
@@ -135,7 +139,7 @@ function Chair(props) {
     return (
         <>
             <Seat className={props.isAvailable === true ? (verifyArray(props.selectedSeats, props.id) ? "selected" : "available") : "unavailable"} onClick={() => {
-                if(props.isAvailable === true){
+                if (props.isAvailable === true) {
                     if (verifyArray(props.selectedSeats, props.id) === false) {
                         props.setSelectedSeats([...props.selectedSeats, props.id]);
                     } else {
@@ -148,10 +152,10 @@ function Chair(props) {
                             props.selectedSeatsId.filter((e) => e != props.name)
                         );
                     }
-                }else{
+                } else {
                     alert("Esse assento não está disponível");
                 }
-                
+
             }}>
                 <p>{props.name}</p>
             </Seat>
@@ -197,6 +201,12 @@ const Description = styled.div`
         margin-bottom:50px;
     }
 `
+
+const IconContainer = styled.div`
+    display:flex;
+    justify-content: center;
+`
+
 const Selected = styled.div`
     width: 26px;
     height: 26px;
@@ -267,12 +277,18 @@ const InputsContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    p{
+        margin-bottom:15px;
+    }
 `
 
 const Input = styled.input`
-    width:327px;
-    height: 25px;
-    margin-bottom:14px;
+    width:75vw;
+    height: 5vh;
+    margin-bottom:20px;
+    border: 1px solid #D4D4D4;
+    border-radius: 5px;
 `
 
 const ButtonContainer = styled.div`
@@ -284,11 +300,17 @@ const ButtonContainer = styled.div`
 const ButtonBox = styled.div`
     width:225px;
     height: 42px;
-    background-color: #E8833A;
-    font-size:18px;
-    color:#FFFFFF;
     display:flex;
     justify-content: center;
     align-items: center;
     margin-top:50px;
+`
+
+const Button = styled.button`
+    width:100%;
+    height:100%;
+    background-color: #E8833A;
+    font-size:18px;
+    color:#FFFFFF;
+    border: 1px solid #E8833A;
 `
