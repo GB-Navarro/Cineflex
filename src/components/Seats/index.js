@@ -10,14 +10,13 @@ export default function Seats(props) {
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
+    const [selectedSeatsId, setSelectedSeatsId] = useState([]);
 
     let data = {
         ids: selectedSeats,
         name: name,
         cpf: cpf
     }
-
-    let seatsID = []; /*Usar esse array para pegar o props.name dos assentos e passar pro objeto que eu exibo na tela final*/
 
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${SessionID.seatId}/seats`);
@@ -44,7 +43,8 @@ export default function Seats(props) {
                                     <>
                                         <Chair key={element.id} id={element.id} name={element.name}
                                             isAvailable={element.isAvailable}
-                                            data={data} selectedSeats={selectedSeats} setSelectedSeats={setSelectedSeats} />
+                                            data={data} selectedSeats={selectedSeats} setSelectedSeats={setSelectedSeats} 
+                                            selectedSeatsId={selectedSeatsId} setSelectedSeatsId={setSelectedSeatsId}/>
                                     </>
                                 )
                             })
@@ -100,7 +100,7 @@ export default function Seats(props) {
                                 const postPromisse = axios.post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`,data);
                                 postPromisse.then((response) => {
                                     props.setUserData({...props.userData,
-                                        seats:selectedSeats
+                                        seats: selectedSeatsId
                                     })
                                 })
                                 postPromisse.catch((error) => {
@@ -135,7 +135,13 @@ function Chair(props) {
                 } else {
                     removeElement(props.selectedSeats, props.id, props.setSelectedSeats);
                 }
-
+                if(verifyArray(props.selectedSeatsId, props.name) === false) {
+                    props.setSelectedSeatsId([...props.selectedSeatsId, props.name]);
+                }else{
+                    props.setSelectedSeatsId(
+                        props.selectedSeatsId.filter((e) => e != props.name)
+                    );
+                }
             }}>
                 <p>{props.name}</p>
             </Seat>
