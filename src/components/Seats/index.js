@@ -1,12 +1,21 @@
 import { useParams } from "react-router-dom";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import "./style.css";
 export default function Seats() {
 
     const SessionID = useParams();
     const [elements, setElements] = useState([]);
-    const [selected, setSelected] = useState(false);
+    const [selectedSeats, setSelectedSeats] = useState([]);
+    const [name, setName] = useState("");
+    const [cpf, setCpf] = useState("");
+
+    let data = {
+        ids: [],
+        name: name,
+        cpf: cpf
+    }
 
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${SessionID.seatId}/seats`);
@@ -16,27 +25,28 @@ export default function Seats() {
         promisse.catch((err) => {
             console.log("Xabu");
         })
-    },[])
+    }, [])
     return (
         <>
             <section>
                 <Tittle className="componentTittle"> Selecione o(s) assento(s) </Tittle>
-                {elements.length > 0 ? 
+                {elements.length > 0 ?
                     <Chairs>
                         {
                             elements.map((element) => {
-                                return(
+                                return (
                                     <>
-                                        <Chair key={element.id} id={element.id} name={element.name} 
-                                        isAvailable={element.isAvailable} selected={selected} setSelected={setSelected}/>
+                                        <Chair key={element.id} id={element.id} name={element.name}
+                                            isAvailable={element.isAvailable}
+                                            data={data} selectedSeats={selectedSeats} setSelectedSeats={setSelectedSeats} />
                                     </>
                                 )
                             })
                         }
                     </Chairs>
-                :
+                    :
                     <></>
-                    }
+                }
                 <Description>
                     <div>
                         <Selected></Selected>
@@ -58,13 +68,17 @@ export default function Seats() {
                     <div className="buyerName">
                         <InputsContainer>
                             <p>Nome do comprador:</p>
-                            <Input placeholder="Digite seu nome..."></Input>
+                            <Input placeholder="Digite seu nome..." onChange={(e) => {
+                                setName(e.target.value);
+                            }}></Input>
                         </InputsContainer>
                     </div>
                     <div className="buyerCPF">
                         <InputsContainer>
                             <p>CPF do comprador:</p>
-                            <Input placeholder="Digite seu CPF..."></Input>
+                            <Input placeholder="Digite seu CPF..." onChange={(e) => {
+                                setCpf(e.target.value);
+                            }}></Input>
                         </InputsContainer>
                     </div>
                 </div>
@@ -91,7 +105,12 @@ export default function Seats() {
 function Chair(props) {
     return (
         <>
-            <Seat available={props.isAvailable} onClick={() => {
+            <Seat className={props.isAvailable === true ? (verifyArray(props.selectedSeats, props.id) ? "selected" : "available") : "unavailable"} onClick={() => {
+                if (verifyArray(props.selectedSeats, props.id) === false) {
+                    props.setSelectedSeats([...props.selectedSeats, props.id]);
+                } else {
+                    removeElement(props.selectedSeats, props.id, props.setSelectedSeats);
+                }
 
             }}>
                 <p>{props.name}</p>
@@ -99,7 +118,20 @@ function Chair(props) {
         </>
     )
 }
+function verifyArray(array, id) {
+    let result = array.find((e) => (e === id));
+    if (result != undefined) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
+function removeElement(array, element, setNewArray) {
+    setNewArray(
+        array.filter((e) => e != element)
+    )
+}
 const Tittle = styled.h1`
     display:flex;
     justify-content: center;
@@ -147,7 +179,6 @@ const Unavailable = styled.div`
 const Seat = styled.div`
     width: 26px;
     height: 26px;
-    background-color: ${props => props.available ? "#8DD7CF" : "#FBE192"};
     display:flex;
     justify-content: center;
     align-items: center;
