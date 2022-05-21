@@ -11,8 +11,8 @@ export default function Movies(){
         promisse.then((response) => {
             setElements(response.data);
         })
-        promisse.catch(() => {
-            console.log("Erro na requisição")
+        promisse.catch((error) => {
+            console.log(error)
         })
     },[]);
     

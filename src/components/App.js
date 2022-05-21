@@ -14,6 +14,7 @@ export default function App(){
 
     const [userData, setUserData] = useState({
         title: "",
+        img: "",
         day: "",
         schedule: "",
         seats: [],

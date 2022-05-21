@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import "./style.css";
+import Footer from "../Footer";
 export default function Seats(props) {
 
     const SessionID = useParams();
@@ -21,14 +22,15 @@ export default function Seats(props) {
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${SessionID.seatId}/seats`);
         promisse.then((response) => {
-            props.setUserData({...props.userData,
+            props.setUserData({
+                ...props.userData,
                 schedule: response.data.name,
                 day: response.data.day.date
             })
             setElements(response.data.seats);
         })
-        promisse.catch((err) => {
-            console.log("Xabu");
+        promisse.catch((error) => {
+            console.log(error);
         })
     }, [])
     return (
@@ -43,8 +45,8 @@ export default function Seats(props) {
                                     <>
                                         <Chair key={element.id} id={element.id} name={element.name}
                                             isAvailable={element.isAvailable}
-                                            data={data} selectedSeats={selectedSeats} setSelectedSeats={setSelectedSeats} 
-                                            selectedSeatsId={selectedSeatsId} setSelectedSeatsId={setSelectedSeatsId}/>
+                                            data={data} selectedSeats={selectedSeats} setSelectedSeats={setSelectedSeats}
+                                            selectedSeatsId={selectedSeatsId} setSelectedSeatsId={setSelectedSeatsId} />
                                     </>
                                 )
                             })
@@ -76,8 +78,9 @@ export default function Seats(props) {
                             <p>Nome do comprador:</p>
                             <Input placeholder="Digite seu nome..." onChange={(e) => {
                                 setName(e.target.value);
-                                props.setUserData({...props.userData,
-                                    name:name
+                                props.setUserData({
+                                    ...props.userData,
+                                    name: name
                                 })
                             }}></Input>
                         </InputsContainer>
@@ -87,8 +90,9 @@ export default function Seats(props) {
                             <p>CPF do comprador:</p>
                             <Input placeholder="Digite seu CPF..." onChange={(e) => {
                                 setCpf(e.target.value);
-                                props.setUserData({...props.userData,
-                                    cpf:cpf
+                                props.setUserData({
+                                    ...props.userData,
+                                    cpf: cpf
                                 })
                             }}></Input>
                         </InputsContainer>
@@ -97,16 +101,17 @@ export default function Seats(props) {
                 <ButtonContainer>
                     <Link to={`/finalscreen`}>
                         <ButtonBox onClick={() => {
-                                const postPromisse = axios.post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`,data);
-                                postPromisse.then((response) => {
-                                    props.setUserData({...props.userData,
-                                        seats: selectedSeatsId
-                                    })
+                            const postPromisse = axios.post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, data);
+                            postPromisse.then((response) => {
+                                props.setUserData({
+                                    ...props.userData,
+                                    seats: selectedSeatsId
                                 })
-                                postPromisse.catch((error) => {
-                                    console.log(error);
-                                })
-                            }}>
+                            })
+                            postPromisse.catch((error) => {
+                                console.log(error);
+                            })
+                        }}>
                             <p> Reservar assento(s) </p> {/*Transformar o p em um button*/}
                         </ButtonBox>
                     </Link>
@@ -115,12 +120,12 @@ export default function Seats(props) {
             <Footer>
                 <RowContainer>
                     <div>
-                        <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg" alt="Capa do filme" />
+                        <img src={props.userData.img} alt="Capa do filme" />
                     </div>
                 </RowContainer>
                 <ColumnContainer>
-                    <p>Liga da Justiça</p>
-                    <p>Quinta-feira - 15:00</p>
+                    <p>{props.userData.title}</p>
+                    <p>{props.userData.day} - {props.userData.schedule}</p>
                 </ColumnContainer>
             </Footer>
         </>
@@ -135,9 +140,9 @@ function Chair(props) {
                 } else {
                     removeElement(props.selectedSeats, props.id, props.setSelectedSeats);
                 }
-                if(verifyArray(props.selectedSeatsId, props.name) === false) {
+                if (verifyArray(props.selectedSeatsId, props.name) === false) {
                     props.setSelectedSeatsId([...props.selectedSeatsId, props.name]);
-                }else{
+                } else {
                     props.setSelectedSeatsId(
                         props.selectedSeatsId.filter((e) => e != props.name)
                     );
@@ -217,14 +222,6 @@ const Seat = styled.div`
     margin-left:8px;
 `
 
-const Footer = styled.footer`
-    width: 100vw;
-    height: 15vh;
-    background-color: #DFE6ED;
-    display:flex;
-    position:fixed;
-    bottom:0;
-`
 
 const RowContainer = styled.div`
     display:flex;
