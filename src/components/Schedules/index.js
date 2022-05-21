@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import styled from 'styled-components';
 
 
-export default function Schedules(){
+export default function Schedules(props){
     
     const {scheduleId} = useParams();
     const [elementos, setElementos] = useState([])
@@ -13,6 +13,9 @@ export default function Schedules(){
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${scheduleId}/showtimes`);
         promisse.then((response) => {
+            props.setUserData({...props.userData,
+                title: response.data.title,
+            })
             const {data} = response;
             setElementos(data.days);
         })

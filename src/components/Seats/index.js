@@ -1,9 +1,9 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import "./style.css";
-export default function Seats() {
+export default function Seats(props) {
 
     const SessionID = useParams();
     const [elements, setElements] = useState([]);
@@ -12,14 +12,20 @@ export default function Seats() {
     const [cpf, setCpf] = useState("");
 
     let data = {
-        ids: [],
+        ids: selectedSeats,
         name: name,
         cpf: cpf
     }
 
+    let seatsID = []; /*Usar esse array para pegar o props.name dos assentos e passar pro objeto que eu exibo na tela final*/
+
     useEffect(() => {
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${SessionID.seatId}/seats`);
         promisse.then((response) => {
+            props.setUserData({...props.userData,
+                schedule: response.data.name,
+                day: response.data.day.date
+            })
             setElements(response.data.seats);
         })
         promisse.catch((err) => {
@@ -70,6 +76,9 @@ export default function Seats() {
                             <p>Nome do comprador:</p>
                             <Input placeholder="Digite seu nome..." onChange={(e) => {
                                 setName(e.target.value);
+                                props.setUserData({...props.userData,
+                                    name:name
+                                })
                             }}></Input>
                         </InputsContainer>
                     </div>
@@ -78,14 +87,29 @@ export default function Seats() {
                             <p>CPF do comprador:</p>
                             <Input placeholder="Digite seu CPF..." onChange={(e) => {
                                 setCpf(e.target.value);
+                                props.setUserData({...props.userData,
+                                    cpf:cpf
+                                })
                             }}></Input>
                         </InputsContainer>
                     </div>
                 </div>
                 <ButtonContainer>
-                    <ButtonBox>
-                        <p> Reservar assento(s) </p> {/*Transformar o p em um button*/}
-                    </ButtonBox>
+                    <Link to={`/finalscreen`}>
+                        <ButtonBox onClick={() => {
+                                const postPromisse = axios.post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`,data);
+                                postPromisse.then((response) => {
+                                    props.setUserData({...props.userData,
+                                        seats:selectedSeats
+                                    })
+                                })
+                                postPromisse.catch((error) => {
+                                    console.log(error);
+                                })
+                            }}>
+                            <p> Reservar assento(s) </p> {/*Transformar o p em um button*/}
+                        </ButtonBox>
+                    </Link>
                 </ButtonContainer>
             </section>
             <Footer>

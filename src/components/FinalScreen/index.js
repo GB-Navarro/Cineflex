@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function FinalScreen(){
+export default function FinalScreen(props){
     return(
         <>
             <section>
@@ -8,18 +8,28 @@ export default function FinalScreen(){
                 <ConfirmationInfos>
                     <InfosContainer>
                         <h1>Filme e Sessão</h1>
-                        <p>Enola Holmes</p>
-                        <p>24/06/2021 15:00</p>
+                        <p>{props.userData.title}</p>
+                        <p>{props.userData.day} {props.userData.Schedule}</p>
                     </InfosContainer>
                     <InfosContainer>
                         <h1>Ingressos</h1>
-                        <p>Assento 15</p>
-                        <p>Assento 16</p>
+                        {
+                            props.userData.seats.length > 0 ?
+                                props.userData.seats.map((element) => {
+                                    return(
+                                        <>
+                                            <p>Assento {element}</p>
+                                        </>
+                                    )
+                                })
+                            :
+                            <></>
+                        }
                     </InfosContainer>
                     <InfosContainer>
                         <h1>Comprador</h1>
-                        <p>Nome: Gabriel da Silva Navarro</p>
-                        <p>CPF: 982.293.000-00</p>
+                        <p>Nome: {props.userData.name}</p>
+                        <p>CPF: {props.userData.cpf}</p>
                     </InfosContainer>
                 </ConfirmationInfos>
                 <ButtonContainer>

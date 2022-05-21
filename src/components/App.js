@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
 import Header from "./Header";
 import Movies from "./Movies";
@@ -10,14 +11,23 @@ import "../reset.css"
 import "../styles.css";
 
 export default function App(){
+
+    const [userData, setUserData] = useState({
+        title: "",
+        day: "",
+        schedule: "",
+        seats: [],
+        name: "",
+        cpf: ""
+    });
     return (
         <BrowserRouter>
             <Header /> {/* OK */}
             <Routes>
-                <Route path="/" element={<Movies />}></Route> {/* OK */}
-                <Route path="/schedules/:scheduleId" element={<Schedules />}></Route> {/* OK */}
-                <Route path="/seats/:seatId" element={<Seats />}></Route> {/* OK */}
-                <Route path="/finalscreen/:finalscreenId" element={<FinalScreen />}></Route> {/* OK */}
+                <Route path="/" element={<Movies/>}></Route> {/* OK */}
+                <Route path="/schedules/:scheduleId" element={<Schedules userData={userData} setUserData={setUserData} />}></Route> {/* OK */}
+                <Route path="/seats/:seatId" element={<Seats userData={userData} setUserData={setUserData} />}></Route> {/* OK */}
+                <Route path="/finalscreen" element={<FinalScreen userData={userData} setUserData={setUserData} />}></Route> {/* OK */}
             </Routes>
         </BrowserRouter>      
     )
