@@ -268,7 +268,8 @@ const ColumnContainer = styled.div`
     
     p{
         color:#293845;
-        margin:0px 14px 5px 0px;
+        margin-left: 14px;
+        margin-top: 7px;
     }
 `
 

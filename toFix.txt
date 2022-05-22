@@ -1,4 +1,7 @@
-Remover formatação do link na finalscreen (botão de retorno)
 Na tela de seats, ao preencher o formulário, a última letra do nome e do cpf é cortada (resolver isso)
 Dar um jeito de individualizar os assentos sem usar css class (igual eu fiz no componente seats)
 Ajeitar o footer fixed (tá fazendo com que não de pra ver parte da tela)
+Fazer o bônus 1
+Fazer o bônus 2
+ajustar o layout para desktop
+remover os warnings que tão aparecendo no console

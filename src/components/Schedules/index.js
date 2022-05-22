@@ -19,7 +19,6 @@ export default function Schedules(props) {
                 title: response.data.title,
                 img: response.data.posterURL
             })
-            console.log(props.userData)
             const { data } = response;
             setElements(data.days);
         })
@@ -70,7 +69,7 @@ function Schedule(props) {
                                     return (
                                         <>
                                             <Link to={`/seats/${showtime.id}`}>
-                                                <span className="scheduleBox">{showtime.name}</span>
+                                                <ScheduleBox>{showtime.name}</ScheduleBox>
                                             </Link>
                                         </>
                                     )
@@ -141,4 +140,21 @@ const ScheduleInfo = styled.div`
 `
 const SchedulesContainer = styled.div`
     display:flex;
+`
+
+const ScheduleBox = styled.span`
+    width: 83px;
+    height: 43px;
+    background-color: #E8833A;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    margin-top:25px;
+    margin-right:10px;
+
+    p{
+        font-size:18px;
+        color: #FFFFFF;
+    }
 `

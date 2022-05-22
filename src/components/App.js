@@ -10,7 +10,7 @@ import FinalScreen from "./FinalScreen";
 import "../reset.css"
 import "../styles.css";
 
-export default function App(){
+export default function App() {
 
     const [userData, setUserData] = useState({
         title: "",
@@ -21,15 +21,16 @@ export default function App(){
         name: "",
         cpf: ""
     });
+
     return (
         <BrowserRouter>
-            <Header /> {/* OK */}
+            <Header />
             <Routes>
-                <Route path="/" element={<Movies/>}></Route> {/* OK */}
-                <Route path="/schedules/:scheduleId" element={<Schedules userData={userData} setUserData={setUserData} />}></Route> {/* OK */}
-                <Route path="/seats/:seatId" element={<Seats userData={userData} setUserData={setUserData} />}></Route> {/* OK */}
-                <Route path="/finalscreen" element={<FinalScreen userData={userData} setUserData={setUserData} />}></Route> {/* OK */}
+                <Route path="/" element={<Movies />}></Route>
+                <Route path="/schedules/:scheduleId" element={<Schedules userData={userData} setUserData={setUserData} />}></Route>
+                <Route path="/seats/:seatId" element={<Seats userData={userData} setUserData={setUserData} />}></Route>
+                <Route path="/finalscreen" element={<FinalScreen userData={userData} setUserData={setUserData} />}></Route>
             </Routes>
-        </BrowserRouter>      
+        </BrowserRouter>
     )
 }

@@ -5,24 +5,5 @@ body{
     font-family: 'Roboto', sans-serif;
     background-color:#E5E5E5;
 }
-/*--Schedules--*/
-
-
-.scheduleBox{
-    width: 83px;
-    height: 43px;
-    background-color: #E8833A;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    color: #FFFFFF;
-    margin-top:25px;
-    margin-right:10px;
-}
-.scheduleBox p{
-    font-size:18px;
-    color: #FFFFFF;
-}
-/*--Schedules--*/
 
 
