@@ -1,11 +1,14 @@
-import {Link} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 import axios from "axios";
-import {useEffect, useState} from "react";
 import styled from "styled-components";
 
-export default function Movies(){
+import Header from "../Header";
+
+export default function Movies() {
     const promisse = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies");
-    const [elements,setElements] = useState([]);
+    const [elements, setElements] = useState([]);
 
     useEffect(() => {
         promisse.then((response) => {
@@ -14,33 +17,34 @@ export default function Movies(){
         promisse.catch((error) => {
             console.log(error)
         })
-    },[]);
-    
-    return(
+    }, []);
+
+    return (
         <>
+            <Header></Header>
             <Main>
                 <h1> Selecione o filme </h1>
                 <MoviesContainer>
                     {elements.map(element => {
                         return (
                             <Link to={`schedules/${element.id}`}>
-                                <Movie key={element.id} imgSrc={element.posterURL} imgAlt={element.title}/>
+                                <Movie key={element.id} imgSrc={element.posterURL} imgAlt={element.title} />
                             </Link>
-                            
+
                         )
-                    })} 
+                    })}
                 </MoviesContainer>
             </Main>
         </>
     )
 }
-function Movie(props){
+function Movie(props) {
     return (
         <>
             <MovieImage>
-                <img src={props.imgSrc} alt={props.imgAlt}/>
+                <img src={props.imgSrc} alt={props.imgAlt} />
             </MovieImage>
-        </>  
+        </>
     )
 }
 

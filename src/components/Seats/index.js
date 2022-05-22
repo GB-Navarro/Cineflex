@@ -1,9 +1,14 @@
-import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+
 import styled from "styled-components";
 import axios from "axios";
+
 import "./style.css";
+
+import Header from "../Header";
 import Footer from "../Footer";
+
 export default function Seats(props) {
 
     const SessionID = useParams();
@@ -35,6 +40,7 @@ export default function Seats(props) {
     }, [])
     return (
         <>
+            <Header></Header>
             <section>
                 <Tittle className="componentTittle"> Selecione o(s) assento(s) </Tittle>
                 {elements.length > 0 ?

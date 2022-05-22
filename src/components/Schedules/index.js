@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import styled from 'styled-components';
-import Footer from "./../Footer";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
+
+import axios from "axios";
+import styled from 'styled-components';
+
+import Header from "../Header";
+import Footer from "../Footer";
 
 export default function Schedules(props) {
 
@@ -26,6 +29,7 @@ export default function Schedules(props) {
 
     return (
         <>
+            <Header></Header>
             <section>
                 <TittleBox>
                     <h1> Selecione o horário </h1>

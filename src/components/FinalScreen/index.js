@@ -1,9 +1,13 @@
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export default function FinalScreen(props){
-    return(
+import styled from "styled-components";
+
+import Header from "../Header";
+
+export default function FinalScreen(props) {
+    return (
         <>
+            <Header></Header>
             <section>
                 <ConfirmationMessage> Pedido feito com sucesso! </ConfirmationMessage>
                 <ConfirmationInfos>
@@ -17,14 +21,14 @@ export default function FinalScreen(props){
                         {
                             props.userData.seats.length > 0 ?
                                 props.userData.seats.map((element) => {
-                                    return(
+                                    return (
                                         <>
                                             <p>Assento {element}</p>
                                         </>
                                     )
                                 })
-                            :
-                            <></>
+                                :
+                                <></>
                         }
                     </InfosContainer>
                     <InfosContainer>
@@ -41,7 +45,7 @@ export default function FinalScreen(props){
                     </ButtonBox>
                 </ButtonContainer>
             </section>
-            
+
         </>
     );
 }

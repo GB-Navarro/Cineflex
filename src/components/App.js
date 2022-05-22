@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
-import Header from "./Header";
 import Movies from "./Movies";
 import Schedules from "./Schedules";
 import Seats from "./Seats";
@@ -24,7 +23,6 @@ export default function App() {
 
     return (
         <BrowserRouter>
-            <Header />
             <Routes>
                 <Route path="/" element={<Movies />}></Route>
                 <Route path="/schedules/:scheduleId" element={<Schedules userData={userData} setUserData={setUserData} />}></Route>
