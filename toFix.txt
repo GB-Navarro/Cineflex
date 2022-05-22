@@ -5,3 +5,4 @@ Fazer o bônus 1
 Fazer o bônus 2
 ajustar o layout para desktop
 remover os warnings que tão aparecendo no console
+pensar se faz sentido separar os styled components em arquivos diferentes

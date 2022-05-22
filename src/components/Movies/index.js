@@ -6,6 +6,8 @@ import styled from "styled-components";
 
 import Header from "../Header";
 
+import Movie from "./functions/Movie"
+
 export default function Movies() {
     const promisse = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies");
     const [elements, setElements] = useState([]);
@@ -38,15 +40,6 @@ export default function Movies() {
         </>
     )
 }
-function Movie(props) {
-    return (
-        <>
-            <MovieImage>
-                <img src={props.imgSrc} alt={props.imgAlt} />
-            </MovieImage>
-        </>
-    )
-}
 
 const Main = styled.main`
     width: 100%;
@@ -68,18 +61,3 @@ const MoviesContainer = styled.div`
     justify-content: space-evenly;
 `
 
-const MovieImage = styled.div`
-    width: 129px;
-    height: 193px;
-    margin-bottom:27px;
-    background-color: #FFFFFF;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 3px;
-
-    img{
-        max-width: 90%;
-        max-height: 90%;
-    }
-`

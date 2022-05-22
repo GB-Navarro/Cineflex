@@ -7,7 +7,11 @@ import Header from "../Header";
 export default function FinalScreen(props) {
     return (
         <>
-            <Header></Header>
+            <Header>
+                <div>
+                    <BackButton> Voltar </BackButton>
+                </div>
+            </Header>
             <section>
                 <ConfirmationMessage> Pedido feito com sucesso! </ConfirmationMessage>
                 <ConfirmationInfos>
@@ -107,4 +111,12 @@ const Button = styled.button`
     font-size:18px;
     color:#FFFFFF;
     border: 1px solid #E8833A;
+`
+
+const BackButton = styled.button`
+    background-color: #E8833A;
+    color: #FFFFFF;
+    font-weight: bold;
+    border: 1px solid #E8833A;
+    border-radius: 5px;
 `

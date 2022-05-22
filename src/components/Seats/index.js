@@ -9,6 +9,8 @@ import "./style.css";
 import Header from "../Header";
 import Footer from "../Footer";
 
+import Chair from "./functions/Chair";
+
 export default function Seats(props) {
 
     const SessionID = useParams();
@@ -40,7 +42,11 @@ export default function Seats(props) {
     }, [])
     return (
         <>
-            <Header></Header>
+            <Header>
+                <div>
+                    <BackButton> Voltar </BackButton>
+                </div>
+            </Header>
             <section>
                 <Tittle className="componentTittle"> Selecione o(s) assento(s) </Tittle>
                 {elements.length > 0 ?
@@ -141,47 +147,7 @@ export default function Seats(props) {
         </>
     )
 }
-function Chair(props) {
-    return (
-        <>
-            <Seat className={props.isAvailable === true ? (verifyArray(props.selectedSeats, props.id) ? "selected" : "available") : "unavailable"} onClick={() => {
-                if (props.isAvailable === true) {
-                    if (verifyArray(props.selectedSeats, props.id) === false) {
-                        props.setSelectedSeats([...props.selectedSeats, props.id]);
-                    } else {
-                        removeElement(props.selectedSeats, props.id, props.setSelectedSeats);
-                    }
-                    if (verifyArray(props.selectedSeatsId, props.name) === false) {
-                        props.setSelectedSeatsId([...props.selectedSeatsId, props.name]);
-                    } else {
-                        props.setSelectedSeatsId(
-                            props.selectedSeatsId.filter((e) => e != props.name)
-                        );
-                    }
-                } else {
-                    alert("Esse assento não está disponível");
-                }
 
-            }}>
-                <p>{props.name}</p>
-            </Seat>
-        </>
-    )
-}
-function verifyArray(array, id) {
-    let result = array.find((e) => (e === id));
-    if (result != undefined) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function removeElement(array, element, setNewArray) {
-    setNewArray(
-        array.filter((e) => e != element)
-    )
-}
 const Tittle = styled.h1`
     display:flex;
     justify-content: center;
@@ -191,13 +157,11 @@ const Tittle = styled.h1`
     font-size:24px;
     color:#293845;
 `
-
 const Chairs = styled.div`
     display:flex;
     flex-wrap:wrap;
     margin: 0px 23px 0px 30px;
 `
-
 const Description = styled.div`
     display:flex;
     justify-content: space-evenly;
@@ -207,12 +171,10 @@ const Description = styled.div`
         margin-bottom:50px;
     }
 `
-
 const IconContainer = styled.div`
     display:flex;
     justify-content: center;
 `
-
 const Selected = styled.div`
     width: 26px;
     height: 26px;
@@ -231,19 +193,6 @@ const Unavailable = styled.div`
     background-color: #FBE192;
     border-radius: 12px;
 `
-
-const Seat = styled.div`
-    width: 26px;
-    height: 26px;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 12px;
-    margin-bottom:18px;
-    margin-left:8px;
-`
-
-
 const RowContainer = styled.div`
     display:flex;
     align-items: center;
@@ -266,7 +215,6 @@ const RowContainer = styled.div`
         margin:auto;
     }
 `
-
 const ColumnContainer = styled.div`
     display:flex;
     flex-direction:column;
@@ -278,7 +226,6 @@ const ColumnContainer = styled.div`
         margin-top: 7px;
     }
 `
-
 const InputsContainer = styled.div`
     display:flex;
     flex-direction: column;
@@ -289,7 +236,6 @@ const InputsContainer = styled.div`
         margin-bottom:15px;
     }
 `
-
 const Input = styled.input`
     width:75vw;
     height: 5vh;
@@ -297,13 +243,11 @@ const Input = styled.input`
     border: 1px solid #D4D4D4;
     border-radius: 5px;
 `
-
 const ButtonContainer = styled.div`
     width: 100%;
     display:flex;
     justify-content: center;
 `
-
 const ButtonBox = styled.div`
     width:225px;
     height: 42px;
@@ -312,7 +256,6 @@ const ButtonBox = styled.div`
     align-items: center;
     margin-top:50px;
 `
-
 const Button = styled.button`
     width:100%;
     height:100%;
@@ -320,4 +263,11 @@ const Button = styled.button`
     font-size:18px;
     color:#FFFFFF;
     border: 1px solid #E8833A;
+`
+const BackButton = styled.button`
+    background-color: #E8833A;
+    color: #FFFFFF;
+    font-weight: bold;
+    border: 1px solid #E8833A;
+    border-radius: 5px;
 `

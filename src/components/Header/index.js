@@ -1,12 +1,10 @@
 import styled from "styled-components";
 
-export default function Header() {
+export default function Header(props) {
     return (
         <>
             <HeaderContainer>
-                <div>
-                    <BackButton> Voltar </BackButton>
-                </div>
+                {props.children}
                 <h1> CINEFLEX </h1>
             </HeaderContainer>
 
@@ -29,12 +27,4 @@ const HeaderContainer = styled.header`
         left: 2vw;
         display:flex;
     }
-`
-
-const BackButton = styled.button`
-    background-color: #E8833A;
-    color: #FFFFFF;
-    font-weight: bold;
-    border: 1px solid #E8833A;
-    border-radius: 5px;
 `
