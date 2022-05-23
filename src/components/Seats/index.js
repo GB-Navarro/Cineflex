@@ -94,10 +94,6 @@ export default function Seats(props) {
                             <p>Nome do comprador:</p>
                             <Input placeholder="Digite seu nome..." onChange={(e) => {
                                 setName(e.target.value);
-                                props.setUserData({
-                                    ...props.userData,
-                                    name: name
-                                })
                             }}></Input>
                         </InputsContainer>
                     </div>
@@ -106,10 +102,6 @@ export default function Seats(props) {
                             <p>CPF do comprador:</p>
                             <Input placeholder="Digite seu CPF..." onChange={(e) => {
                                 setCpf(e.target.value);
-                                props.setUserData({
-                                    ...props.userData,
-                                    cpf: cpf
-                                })
                             }}></Input>
                         </InputsContainer>
                     </div>
@@ -121,6 +113,8 @@ export default function Seats(props) {
                             postPromisse.then((response) => {
                                 props.setUserData({
                                     ...props.userData,
+                                    name: name,
+                                    cpf: cpf,
                                     seats: selectedSeatsId
                                 })
                             })
